@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymelaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            padding: 10px;
+            color: white;
+            width: 100%;
+        }
+        #b2,#b1{
+            display: -flex
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            padding: 10px;
+            color: white;
+            width: 100%;
+            outline:none;
+        }
+
+
+        main {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        form {
+            max-width: 400px;
+            margin-right: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span style="text:align : center">Task Management</span>
+    <div>
+        <form  action = # th:action = "@{/logout}" method = "POST">
+            <button><a style="text-decoration:none;color:white" th:href ="@{/}">Home</a> </button>
+            <button type = "submit">Logout</button>
+        </form>
+    </div>
+</header>
+
+<main>
+    <form id="taskForm" action="#" th:action = "@{/save}" th:object = "${task}" method="POST">
+        <h2>Add New Task</h2>
+        <input type = "hidden" th:field = "*{id}">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="taskName" required  th:field = "*{name}">
+
+        <label for="taskDescription">Task Description:</label>
+        <textarea id="taskDescription" name="taskDescription" rows="4" required  th:field = "*{description}"></textarea>
+
+        <button type="submit">Add Task</button>
+    </form>
+</main>
+
+</body>
+</html>

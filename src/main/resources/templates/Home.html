@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>All Tasks</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            padding: 10px;
+            color: white;
+            width: 100%;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        th{
+        text-align : center;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <span style="text:align : center">Task Management</span>
+    <div>
+        <form  action = # th:action = "@{/logout}" method = "POST">
+            <button><a style="text-decoration:none;color:white" th:href ="@{/}">Home</a> </button>
+            <button type = "submit">Logout</button>
+        </form>
+    </div>
+</header>
+<main>
+<div class = "container">
+    <h3>All Tasks</h3>
+    <div>
+        <a th:href = "@{/pendingTasks}" class = "btn btn-secondary">Pending Tasks</a>
+        <a th:href = "@{/completedTasks}" class = "btn btn-secondary">Completed Tasks</a>
+        <a th:href = "@{/add-task}" class = "btn btn-secondary">Add Task</a>
+    </div>
+    <hr>
+    <table class="table table-bordered table-striped" th:if="${#lists.isEmpty(tasks)}">
+        <caption>No Tasks available...try adding some tasks</caption>
+    </table>
+<!--    <table class="table table-bordered table-striped">-->
+    <table class="table table-bordered table-striped" th:unless="${#lists.isEmpty(tasks)}">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+    <tbody>
+        <tr th:each="tempTask : ${tasks}">
+            <td th:text = "${tempTask.id}"/>
+            <td th:text = "${tempTask.name}"/>
+            <td th:text = "${tempTask.description}"/>
+            <td th:text = "${tempTask.date}"/>
+<!--            <td th:text = "${tempTask.status}"/>-->
+<!--            <td>-->
+<!--                <span th:if="${tempTask.status==1}">Completed</span>-->
+<!--                <span th:unless="${tempTask.status==0}">Incomplete</span>-->
+<!--            </td>-->
+            <td th:text="${tempTask.status == true ? 'Completed' : 'Incomplete'}"></td>
+            <td>
+                <center>
+                    <!-- Display "Update" and "Completed" buttons only if tempTask.status is false -->
+                    <span th:if="${tempTask.status == false}">
+                            <a th:href="@{/changeStatus(id = ${tempTask.id})}" class="btn btn-info btn-sm"
+                               onclick="if(!(confirm('Change Status of Task?'))) return false">Completed</a>
+                            <a th:href="@{/updateTask(id = ${tempTask.id})}" class="btn btn-info btn-sm">Update</a>
+                        </span>
+
+                    <!-- Display "Delete" button for both true and false -->
+                    <a th:href="@{/deleteTask(id = ${tempTask.id})}"
+                    class="btn btn-danger btn-sm"
+                    onclick="if(!(confirm('Are you sure you want to delete this Task?'))) return false">Delete</a>
+
+                </center>
+<!--                <center>-->
+<!--                <a th:href = "@{/changeStatus(id = ${tempTask.id})}"-->
+<!--                    class ="btn btn-info btn-sm">Completed</a>-->
+<!--                <a th:href = "@{/updateTask(id = ${tempTask.id})}"-->
+<!--                   class ="btn btn-info btn-sm">Update</a>-->
+<!--                <a th:href = "@{/deleteTask(id = ${tempTask.id})}"-->
+<!--                    class ="btn btn-danger btn-sm"-->
+<!--                    onclick="if(!(confirm('Are you sure you want to delete this Task?'))) return false">Delete</a>-->
+<!--            </center>-->
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</main>
+
+
+
+</body>
+</html>
