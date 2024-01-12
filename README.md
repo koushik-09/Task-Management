@@ -40,7 +40,7 @@ In application.properties file change MySQL database URL, username, password acc
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
 
-[![Resume]()](https://drive.google.com/file/d/1jO-fQcoP1icGoez3NLSaOOBUUlf7tooH/view?usp=drive_link)
+[![Resume]()](https://drive.google.com/file/d/12ny32Y7w4UUTYC6jgC_Dr0eRCNPoK-IB/view?usp=sharing)
 
 # Thank you
 
