@@ -60,7 +60,7 @@ public class RestController {
     public String updateTask(@RequestParam("id") int theId, Model theModel){
         Task newTask = service.findById(theId);
         theModel.addAttribute("task",newTask);
-        return "/AddTask";
+        return "AddTask";
     }
 
     @GetMapping("/changeStatus")
