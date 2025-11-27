@@ -44,14 +44,23 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
+<!--		 MySQL driver kept for reference; switched to H2. Uncomment to use MySQL at runtime.-->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- H2 Database (in-memory / file) -->
+		<!--<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>-->
 	</dependencies>
 
 	<build>
+        <finalName>task-management-0.1</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
